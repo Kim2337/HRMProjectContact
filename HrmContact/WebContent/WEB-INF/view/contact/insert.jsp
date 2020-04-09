@@ -24,16 +24,16 @@
 이름 : <input name="name" id="name" size="30" placeholder="이름을 입력하세요">
 </div>
 <div>
-직급 : <input name="name" id="level" size="30" placeholder="직급을 입력하세요">
+직급 : <input name="level" id="level" size="30" placeholder="직급을 입력하세요">
 </div>
 <div>
-회사명 : <input name="name" id="compname" size="30" placeholder="회사명 입력하세요">
+회사명 : <input name="compname" id="compname" size="30" placeholder="회사명 입력하세요">
 </div>
 <div>
-이메일 : <input name="name" id="email" size="30" placeholder="이메일을 입력하세요">
+이메일 : <input name="email" id="email" size="30" placeholder="이메일을 입력하세요">
 </div>
 <div>
-전화번호 : <input name="name" id="phonenum" size="30" placeholder="전화번호를 입력하세요">
+전화번호 : <input name="phonenum" id="phonenum" size="30" placeholder="전화번호를 입력하세요">
 </div>
 
 <button type="button" id="btnSave">등록</button> 

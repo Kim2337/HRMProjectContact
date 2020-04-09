@@ -1,8 +1,16 @@
 package contact.domain;
 
 public class ContactDto {
-	int num;
+	int num, gnum;
 	String name, level, compname, email, phonenum;
+	
+	
+	public int getGnum() {
+		return gnum;
+	}
+	public void setGnum(int gnum) {
+		this.gnum = gnum;
+	}
 	public int getNum() {
 		return num;
 	}

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import contact.domain.ContactDto;
 import contact.persistence.ContactDao;
+
 @Service
 public class ContactServiceImpl implements ContactService {
 
