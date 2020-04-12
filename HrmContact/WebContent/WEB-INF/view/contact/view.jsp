@@ -54,10 +54,6 @@ $(document).ready(function(){
 <a href='<c:url value='contact/update.do?num=${dto.num }'/>' >수정</a>
 <a href='<c:url value='contact/delete.do?num=${dto.num }'/>' >삭제 </a>
 
-<button type="button" id="btnupdate">수정</button>
-<button type="button" id="btndelete">삭제</button>
-<button type="button" id="btnlist">목록으로</button>
-
 </form>
 </body>
 </html>

@@ -13,9 +13,6 @@ $(document).ready(function(){
 	$("#gadd").click(function(){
 		location.href="contact/gwrite.do";
 		});
-	$("#gupdate").click(function(){
-		location.href="contact/gupdate.do";
-		});
 });
 </script>
 
@@ -25,7 +22,6 @@ $(document).ready(function(){
 <h2>그룹관리</h2>
 <!-- 그룹 관리 페이지에서 그룹 수정, 삭제, 추가 -->
 <button id="gadd">그룹추가</button>
-<button id="gupdate">그룹수정</button>
 
 <table border="1" width="300px">
   <tr>
@@ -33,7 +29,6 @@ $(document).ready(function(){
   </tr>
   <c:forEach var="cgroup" items="${glist}">
   <tr>
-  <td>${cgroup.gnum}</td>
   <td><a href="contact/gview.do?gnum=${cgroup.gnum}">${cgroup.gname}</a></td>
   </tr>
    </c:forEach>

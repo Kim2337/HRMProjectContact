@@ -7,8 +7,8 @@
 
 <!-- 연락처 등록   -->
 <insert id="insert">
-insert into contact(name, level, compname, email, phonenum)
-values(#{name}, #{level}, #{compname}, #{email}, #{phonenum})
+insert into contact(name, level, compname, email, phonenum, gnum)
+values(#{name}, #{level}, #{compname}, #{email}, #{phonenum}, #{gnum})
 </insert>
 
 <!-- 연락처 삭제  -->
@@ -19,16 +19,10 @@ delete from contact where num = #{num}
 <!-- 연락처 수정 -->
 <update id="update">
 update contact
-set name=#{name},level=#{level}, compname=#{compname}, 
-email=#{email}, phonenum=#{phonenum} 
+set name=#{name},level=#{level}, compname=#{compname},
+email=#{email}, phonenum=#{phonenum}, gnum=#{gnum} 
 where num = #{num}
 </update>
-
-
-<!-- 연락처 목록 -->
-<select id="list" resultType="contact.domain.ContactDto">
-select * from contact
-</select>
 
 
 <!-- 연락처 자세히보기  -->
@@ -37,9 +31,15 @@ select * from contact where num = #{num}
 </select>
 
 
+<!-- 연락처 목록 -->
+<select id="list" resultType="contact.domain.ContactDto">
+select num, gnum, gname,name,level,compname,email,phonenum  
+from contact natural join cgroup
+</select>
+
 <!-- 그룹 목록 -->
 <select id="glist" resultType="contact.domain.GroupDto">
-select gname from cgroup
+select * from cgroup
 </select>
 
 <!-- 그룹 추가 -->
@@ -60,7 +60,7 @@ where gnum = #{gnum}
 delete from cgroup where gnum = #{gnum}
 </delete>
 
-<!-- 그룹 자세히 보기 ~~ 보류 ~~-->
+<!-- 그룹 자세히 보기-->
 <select id="gread" resultType="contact.domain.GroupDto">
 select * from cgroup where gnum = #{gnum}
 </select>

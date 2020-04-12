@@ -9,10 +9,10 @@
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script>
 
-$(document).ready(function(){
+$(function(){
 	$("#gupdate").click(function(){
 		confirm("수정하시겠습니까?");
-		document.form1.submit
+		document.update.submit();
 		});
 });
 </script>
@@ -21,20 +21,18 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>그룹수정</h2>
-<!-- 그룹 관리 페이지에서 그룹 수정, 삭제, 추가 -->
-<button id="gadd">그룹추가</button>
-<button id="gupdate">그룹수정</button>
-
-<table border="1" width="300px">
-  <tr>
-    <th>그룹이름</th>
-  </tr>
-  <c:forEach var="cgroup" items="${glist}">
-  <tr>
-  <td><a href="contact/gview.do?gnum=${gdto.gnum}">${gdto.gname}</a></td>
-  </tr>
-   </c:forEach>
-</table>
-
+<form name="update" method="post">
+<table border="1" width="1000">
+ <tr>
+   <td colspan="4"> 
+   <input type="hidden" name="gnum" value="${gdto.gnum}">
+   <b> 그룹이름 : <input name="gname"></b></td>
+ </tr>
+ <tr>
+ </tr>
+ </table>
+ 
+ <button id="gupdate">수정완료</button>
+</form>
 </body>
 </html>

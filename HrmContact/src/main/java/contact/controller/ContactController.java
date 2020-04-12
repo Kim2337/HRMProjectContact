@@ -1,7 +1,9 @@
 package contact.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import contact.domain.ContactDto;
 import contact.domain.GroupDto;
@@ -79,8 +84,9 @@ public class ContactController {
 	public String delete(@RequestParam int num) throws Exception{
 		service.delete(num);
 		return "contact/list.do";
-	}
-*/	@RequestMapping(value="contact/contact/delete.do", method = RequestMethod.GET)
+	}*/
+	//연락처 삭제
+	@RequestMapping(value="contact/contact/delete.do", method = RequestMethod.GET)
 	public ModelAndView deleteContact(@RequestParam int num) throws Exception{
 		ModelAndView mav = new ModelAndView("redirect:/contact/list.do");
 		service.delete(num);
@@ -113,26 +119,53 @@ public class ContactController {
 	}
 		
 	//그룹 추가 처리
-	@RequestMapping(value="contact/gwrite.do", method = RequestMethod.POST)
+	@RequestMapping(value="contact/contact/contact/gwrite.do", method = RequestMethod.POST)
 	public String writeGroup(@ModelAttribute GroupDto gdto) throws Exception {
 		gservice.ginsert(gdto);
 		return "redirect:/contact/list.do";
 	}
 	
 	//그룹 수정 페이지로 이동 
-	@RequestMapping(value="contact/contact/gupdate.do", method = RequestMethod.GET)
+	@RequestMapping(value="contact/contact/contact/gupdate.do", method = RequestMethod.GET)
 	public String gupdate() {
 		return "contact/gupdate";
 	}
 	
 	//그룹 수정 처리 
-	@RequestMapping(value="contact/contact/gupdate.do", method = RequestMethod.POST)
+	@RequestMapping(value="contact/contact/contact/gupdate.do", method = RequestMethod.POST)
 	public String gupdate(@ModelAttribute GroupDto gdto) throws Exception {
 		gservice.gupdate(gdto);
-		return "redirect:list.do";
+		return "redirect:/contact/list.do";
 	}
 	
 	
 	//그룹 삭제 처리 
+	@RequestMapping(value="contact/contact/contact/gdelete.do", method = RequestMethod.GET)
+	public ModelAndView deleteGroup(@RequestParam int gnum) throws Exception{
+		ModelAndView mav = new ModelAndView("redirect:/contact/list.do");
+		gservice.gdelete(gnum);
+		return mav;
+	}
+
+	//그룹 등록 - 선택 ajax
+	@RequestMapping(value = "contact/groups.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void groupList(HttpServletResponse resp) throws Exception{
+		List<GroupDto> glist = gservice.glist();
+		Gson json = new Gson();
+		resp.setContentType("text/html;charset=utf-8");
+		PrintWriter out = resp.getWriter();
+		out.print(json.toJson(glist));
+	}
+	
+	@RequestMapping(value = "contact/contact/groups.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void glistUpdate(HttpServletResponse resp) throws Exception{
+		List<GroupDto> glist = gservice.glist();
+		Gson json = new Gson();
+		resp.setContentType("text/html;charset=utf-8");
+		PrintWriter out = resp.getWriter();
+		out.print(json.toJson(glist));
+	}
 	
 }

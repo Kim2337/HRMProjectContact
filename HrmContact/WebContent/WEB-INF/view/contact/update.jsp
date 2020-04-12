@@ -11,20 +11,24 @@ $(function(){
 	$("#save").click(function(){
 		confirm("수정하시겠습니까?")
 		document.update.submit();
-		})
-/* 그룹을 선택할 수 있도록 ~! */
-	/* $.ajax({
-		type:"post", 
-		url: "update.do",
-		dataType:"json"
-		}).done(function(args){
-			for(var i=0; i<args.length; i++){
-				$("#group").append("<option value='"+args[i].gnum+"'>"+args[i].gname+"</option>");
-				}
-			}).fail(function(e){
-				alert(e.responseText);
-				}) */
+		});
 });
+$(function selectGroup(){
+	var url="groups.do";
+	$.ajax({
+		type:"post"		
+		,url:url		
+		,dataType:"json" })
+		.done(function(args){
+			 for(var i=0; i < args.length; i++) {
+				 $("#group").append("<option value='"+args[i].gnum+"'>"+args[i].gname+"</option>");					
+			 }
+ 			})
+	    .fail(function(e) {
+	    	alert(e.responseText);
+	    })
+});
+
 
 </script>
 </head>
@@ -37,7 +41,7 @@ $(function(){
    
    <!-- 현재 그룹 목록을 select-option으로 선택할 수 있게...-->   
    <b> 그룹 : 
-   <select id="group">
+   <select id="group" name="gname">
      <option value="">그룹선택</option>
    </select>  </b><br>   
    <input type="hidden" name="num" value="${dto.num}">

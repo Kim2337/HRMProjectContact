@@ -31,12 +31,9 @@ $(document).ready(function(){
     <th>이메일</th>
     <th>전화번호</th>
    </tr>
- 
-  
- 
     <c:forEach var="contact" items="${list}">
   <tr>
-   <td>${contact.gnum}</td>
+   <td></td>
      <td><a href="contact/view.do?num=${contact.num}">${contact.name}</a></td>
    <td>${contact.level }</td>
     <td>${contact.compname}</td>
