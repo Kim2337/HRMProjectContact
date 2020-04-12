@@ -29,6 +29,7 @@ public class ContactController {
 	//연락처 목록 
 	@RequestMapping("/list.do")
 	public ModelAndView list() throws Exception{
+		
 		List<ContactDto> list = service.list();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("contact/list");
@@ -46,44 +47,46 @@ public class ContactController {
 	}
 	
 	//연락처 등록 페이지로 이동  
-	@RequestMapping(value="contact/insert.do", method = RequestMethod.GET)
+	@RequestMapping(value="contact/insert.do",method = RequestMethod.GET)
 	public String write() {
 		return "contact/insert";
 	}
-	
+
 	//연락처 등록 처리
 	@RequestMapping(value="contact/contact/insert.do", method = RequestMethod.POST)
 	public String writeContact(@ModelAttribute ContactDto dto) throws Exception {
 		service.insert(dto);
-		//연락처 DB등록은 되는데 
-		//연릭처 등록 이후 페이지 이동 수정 
-		return "contact/list";
+		return "redirect:/contact/list.do";
 	}
-	
+
+
 	//연락처 수정 페이지 이동 
 	@RequestMapping(value="contact/contact/update.do", method = RequestMethod.GET)
 	public String update() {
 		return "contact/update";
 	}
 	
-	//연락처 수정 
+	//연락처 수정
 	@RequestMapping(value="contact/contact/update.do", method = RequestMethod.POST)
 	public String updateContact(@ModelAttribute ContactDto dto) throws Exception {
 		service.update(dto);
-		return "redirect:list.do";
+		return "redirect:/contact/list.do";
 	}
-	
-	//연락처 수정...
 
-	
+/*
 	//연락처 삭제 
 	@RequestMapping(value="contact/contact/delete.do", method = RequestMethod.POST)
 	public String delete(@RequestParam int num) throws Exception{
 		service.delete(num);
 		return "contact/list.do";
 	}
-	
-	
+*/	@RequestMapping(value="contact/contact/delete.do", method = RequestMethod.GET)
+	public ModelAndView deleteContact(@RequestParam int num) throws Exception{
+		ModelAndView mav = new ModelAndView("redirect:/contact/list.do");
+		service.delete(num);
+		return mav;
+	}
+	//////////////////////////////////////////////////////
 	//그룹관리 
 	@RequestMapping(value = "contact/glist.do", method = RequestMethod.GET)
 	public ModelAndView glist() throws Exception{
@@ -95,7 +98,7 @@ public class ContactController {
 	}
 	
 	//그룹 보기 
-	@RequestMapping(value="contact/gview.do", method = RequestMethod.GET)
+	@RequestMapping(value="contact/contact/gview.do", method = RequestMethod.GET)
 	public ModelAndView gview(@RequestParam int gnum, HttpSession session) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("contact/gview");
@@ -104,22 +107,20 @@ public class ContactController {
 	}
 	
 	//그룹 추가 페이지로 이동  
-	@RequestMapping(value="contact/contact/gwrite.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="contact/contact/gwrite.do", method = RequestMethod.GET)
 	public String gwrite() {
 		return "contact/gwrite";
 	}
 		
 	//그룹 추가 처리
-	@RequestMapping(value="contact/contact/contact/gwrite.do", method = RequestMethod.POST)
+	@RequestMapping(value="contact/gwrite.do", method = RequestMethod.POST)
 	public String writeGroup(@ModelAttribute GroupDto gdto) throws Exception {
 		gservice.ginsert(gdto);
-		//바로 그룹 list페이지로 이동하도록 수정 
-		//contact/glist
-		return "contact/glist";
+		return "redirect:/contact/list.do";
 	}
 	
 	//그룹 수정 페이지로 이동 
-	@RequestMapping(value="contact/contact/gupdate.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="contact/contact/gupdate.do", method = RequestMethod.GET)
 	public String gupdate() {
 		return "contact/gupdate";
 	}

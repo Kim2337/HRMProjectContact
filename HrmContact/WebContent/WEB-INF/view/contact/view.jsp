@@ -34,6 +34,7 @@ $(document).ready(function(){
 
 <body>
 <h2>연락처</h2>
+<form name="form" method="post">
 <table border="1" width="1000">
 
  <tr>
@@ -51,13 +52,12 @@ $(document).ready(function(){
 </table>
 
 <a href='<c:url value='contact/update.do?num=${dto.num }'/>' >수정</a>
+<a href='<c:url value='contact/delete.do?num=${dto.num }'/>' >삭제 </a>
+
 <button type="button" id="btnupdate">수정</button>
 <button type="button" id="btndelete">삭제</button>
 <button type="button" id="btnlist">목록으로</button>
 
-<script>
-
-</script>
-
+</form>
 </body>
 </html>

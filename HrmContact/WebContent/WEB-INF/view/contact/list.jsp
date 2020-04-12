@@ -36,10 +36,9 @@ $(document).ready(function(){
  
     <c:forEach var="contact" items="${list}">
   <tr>
-   <td>그룹이름</td>
-   <td>${contact.name }</td>
-    <td><a href="contact/view.do?num=${contact.num}">${contact.name}</a></td>
-    <td>${contact.level}</td>
+   <td>${contact.gnum}</td>
+     <td><a href="contact/view.do?num=${contact.num}">${contact.name}</a></td>
+   <td>${contact.level }</td>
     <td>${contact.compname}</td>
     <td>${contact.email}</td>
     <td>${contact.phonenum}</td>

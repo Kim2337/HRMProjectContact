@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,7 @@
   $(document).ready(function(){
 	  $("#btnSave").click(function(){
 		  confirm("등록하시겠습니까?");
-		  document.form1.submit();
+		  document.insert.submit();
 		  });
 	  });
 </script>
@@ -18,7 +20,7 @@
 
 
 <h2>연락처 등록</h2>
-<form name="form1" method="post" action="contact/insert.do">
+<form name="insert" action='<c:url value='contact/insert.do'/>' method="post">
 
 <div>
 이름 : <input name="name" id="name" size="30" placeholder="이름을 입력하세요">
@@ -35,7 +37,7 @@
 <div>
 전화번호 : <input name="phonenum" id="phonenum" size="30" placeholder="전화번호를 입력하세요">
 </div>
-
+<button type="submit">등록하</button>
 <button type="button" id="btnSave">등록</button> 
 
 </form>

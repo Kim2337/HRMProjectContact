@@ -19,7 +19,7 @@ delete from contact where num = #{num}
 <!-- 연락처 수정 -->
 <update id="update">
 update contact
-set name=#{num},level=#{level}, compname=#{compname}, 
+set name=#{name},level=#{level}, compname=#{compname}, 
 email=#{email}, phonenum=#{phonenum} 
 where num = #{num}
 </update>
@@ -27,7 +27,7 @@ where num = #{num}
 
 <!-- 연락처 목록 -->
 <select id="list" resultType="contact.domain.ContactDto">
-select * from contact natural join cgroup
+select * from contact
 </select>
 
 
@@ -62,7 +62,7 @@ delete from cgroup where gnum = #{gnum}
 
 <!-- 그룹 자세히 보기 ~~ 보류 ~~-->
 <select id="gread" resultType="contact.domain.GroupDto">
-select * from cgroup narutal join contact
+select * from cgroup where gnum = #{gnum}
 </select>
 
 </mapper>

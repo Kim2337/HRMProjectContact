@@ -21,7 +21,6 @@ public class ContactDaoImpl extends SqlSessionDaoSupport  implements ContactDao 
 	@Override
 	public void insert(ContactDto dto) throws Exception {
 		getSqlSession().insert("contact.insert", dto);
-		
 	}
 
 	//연락처 수정 

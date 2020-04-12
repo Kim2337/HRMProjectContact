@@ -28,7 +28,7 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	
-	//연락처 수정 
+	//연락처 수정 insert
 	@Override
 	public void update(ContactDto dto) throws Exception {
 		dao.update(dto);

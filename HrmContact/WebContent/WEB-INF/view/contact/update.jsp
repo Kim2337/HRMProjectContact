@@ -39,9 +39,8 @@ $(function(){
    <b> 그룹 : 
    <select id="group">
      <option value="">그룹선택</option>
-   </select>  </b><br>
-   
-   
+   </select>  </b><br>   
+   <input type="hidden" name="num" value="${dto.num}">
    <b> 이름 : <input name="name" value="${dto.name}">${dto.name}</b><br>
    <b> 직급 :<input name="level"></b><br>
    <b> 회사명 : <input name="compname"></b><br>

@@ -33,6 +33,7 @@ $(document).ready(function(){
   </tr>
   <c:forEach var="cgroup" items="${glist}">
   <tr>
+  <td>${cgroup.gnum}</td>
   <td><a href="contact/gview.do?gnum=${cgroup.gnum}">${cgroup.gname}</a></td>
   </tr>
    </c:forEach>
