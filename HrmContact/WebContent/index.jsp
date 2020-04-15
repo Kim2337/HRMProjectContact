@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="contact/list.do">연락처</a>
+<a href="contact/list.do">연락처</a><br>
+<a href="empinfo/empinfo.do">조직도 </a>
 </body>
 </html>

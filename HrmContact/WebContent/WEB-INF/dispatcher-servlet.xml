@@ -16,7 +16,8 @@
 		<property name="configLocation" value="classpath:config.xml" />
 	</bean>
 	<context:annotation-config/>
-	<context:component-scan base-package="contact.controller, contact.service"/>
+	<context:component-scan base-package="contact.controller, contact.service, 
+	empinfo.controller, empinfo.service"/>
 	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -34,6 +35,10 @@
 	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
 	
+	
+	<bean class="empinfo.persistence.EmpDao">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
 	
 	<mvc:annotation-driven>
 		<mvc:message-converters>
